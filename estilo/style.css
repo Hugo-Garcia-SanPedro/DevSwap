@@ -284,7 +284,8 @@ form label {
 
 /* Campos de entrada (email y password) */
 form input[type="email"],
-form input[type="password"] {
+form input[type="password"],
+form input[type="text"] {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1.5rem;
@@ -298,7 +299,8 @@ form input[type="password"] {
 
 /* Efecto al hacer foco en los campos */
 form input[type="email"]:focus,
-form input[type="password"]:focus {
+form input[type="password"]:focus,
+form input[type="text"]:focus {
     outline: none;
     border-color: cornflowerblue;
 }
