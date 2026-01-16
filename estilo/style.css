@@ -253,6 +253,82 @@ strong {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.registro {
+    padding: 1.5rem;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 2rem);
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 2rem auto
+}
+
+form label {
+    font-size: medium;
+    font-weight: bold;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+}
+
+/* Campos de entrada (email y password) */
+form input[type="email"],
+form input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+/* Efecto al hacer foco en los campos */
+form input[type="email"]:focus,
+form input[type="password"]:focus {
+    outline: none;
+    border-color: cornflowerblue;
+}
+
+/* Botón de enviar */
+form input[type="submit"] {
+    width: 100%;
+    padding: 1rem;
+    background-color: cornflowerblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Efecto hover en el botón */
+form input[type="submit"]:hover {
+    background-color: #5a7fc4;
+    transform: translateY(-2px);
+}
+
+/* Efecto al hacer clic en el botón */
+form input[type="submit"]:active {
+    transform: translateY(0);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .barra-busqueda {

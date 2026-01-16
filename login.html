@@ -1,6 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <title>Login - DevSwap.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="description" content="Plataforma para el intercambio entre desarrolladores.">
+        <meta name="author" content="Hugo García San Pedro">
+        <link rel="stylesheet" href="estilo/style.css">
+    </head>
     <body>
-        <h1>PAGINA DE INICIO DE SESION</h1>
+        <header>
+            <div class="barra-busqueda">
+                <h1>DevSwap</h1>
+                <a href="index.html">Inicio</a>
+                <a href="index.html#Como-Funciona">Como Funciona</a>
+                <a href="index.html#Ofertas">Ofertas</a>
+                <a href="registro.html">Registrarse</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="registro">
+                <h2>Iniciar Sesión</h2>
+
+                <p>Introduce tus credenciales:</p>
+                <form method="POST">
+                    <label>Intrduce tu correo electronico:</label><br>
+                    <input type="email" placeholder="email@"><br>
+                    <label>Introduce tu contraseña:</label><br>
+                    <input type="password" placeholder="***********"><br>
+                    <input type="submit" value="Iniciar Sesión">
+                </form>
+
+                <!-- Eliminar cuando se implemente PHP -->
+                <hr>
+                <p>Simular acceso como:</p>
+                <a href="usuario-normal.html">Usuario Normal</a>
+                <a href="admin.html">Administrador</a>
+                <hr>
+
+                <p>¿No tienes cuenta?</p>
+                <a href="registro.html">Registrate Aqui</a>
+            </div>
+        </main>
+
+        <footer>
+            <strong>DevSwap</strong><br>
+            <hr>
+            <strong>Plataforma de intercambios entre desarrolladores</strong><br>
+            <hr>
+            <strong>2026 - DevSwap</strong>
+        </footer>
     </body>
 </html>
