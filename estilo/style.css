@@ -199,24 +199,24 @@ main h3, main h2 {
 }
 
 /* Sección final de registro */
-main > div:last-of-type {
+main > div {
     text-align: center;
     padding: 3rem 2rem;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
 }
 
-main > div:last-of-type h2 {
+main > div h2 {
     color: white;
 }
 
-main > div:last-of-type p {
+main > div p {
     color: white;
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
 }
 
-main > div:last-of-type a {
+main > div a {
     display: inline-block;
     padding: 1rem 2rem;
     background-color: white;
@@ -228,7 +228,7 @@ main > div:last-of-type a {
     transition: transform 0.3s;
 }
 
-main > div:last-of-type a:hover {
+main > div a:hover {
     transform: scale(1.05);
 }
 
@@ -285,7 +285,8 @@ form label {
 /* Campos de entrada (email y password) */
 form input[type="email"],
 form input[type="password"],
-form input[type="text"] {
+form input[type="text"],
+form input[type="image"]  {
     width: 100%;
     padding: 0.75rem;
     margin-bottom: 1.5rem;
@@ -300,7 +301,8 @@ form input[type="text"] {
 /* Efecto al hacer foco en los campos */
 form input[type="email"]:focus,
 form input[type="password"]:focus,
-form input[type="text"]:focus {
+form input[type="text"]:focus,
+form input[type="image"]:focus  {
     outline: none;
     border-color: cornflowerblue;
 }
@@ -329,6 +331,14 @@ form input[type="submit"]:hover {
 /* Efecto al hacer clic en el botón */
 form input[type="submit"]:active {
     transform: translateY(0);
+}
+
+.impar {
+    background-color: rgb(242, 164, 191);
+}
+
+.par {
+    background-color: rgb(225, 150, 175);
 }
 
 /* Responsive */

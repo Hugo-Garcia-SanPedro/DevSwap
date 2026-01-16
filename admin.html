@@ -1,6 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
+    <head>
+        <title>Administrador - DevSwap.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="description" content="Plataforma para el intercambio entre desarrolladores.">
+        <meta name="author" content="Hugo García San Pedro">
+        <link rel="stylesheet" href="estilo/style.css">
+    </head>
     <body>
-        <h1>PAGINA DEL ADMINISTRADOR</h1>
+        <header>
+            <div class="barra-busqueda">
+                <h1>DevSwap</h1>
+                <a href="index.html">Inicio</a>
+                <a href="#Usuarios">Gestión de Usuarios</a>
+                <a href="#Categorias">Gestión de Categorias</a>
+                <a href="index.html">Cerrar Sesión</a>
+            </div>
+
+            <div class="banner-principal">
+                <h2>Panel de Administración</h2>
+                <h2>👋Hola, Mario</h2>
+                <p>Gestiona todos los aspectos de la plataforma, DevSwap</p>
+            </div>
+        </header>
+    
+        <main>
+            <div class="impar">
+                <div class="registro">
+                    <h3 id="Usuarios">Gestión de Usuarios</h3>
+                    <form method="POST">
+                        <label>Nombre:</label>
+                        <input type="text" placeholder="Nombre de Usuario">
+                        <label>Primer Apellido:</label>
+                        <input type="text" placeholder="Primer Apellido">
+                        <label>Segundo Apellido:</label>
+                        <input type="text" placeholder="Segundo Apellido">
+                        <label>Correo Electronico:</label>
+                        <input type="email" placeholder="email@">
+                        <label>Telefono:</label>
+                        <input type="text" placeholder="Telefono">
+                        <label>Provincia:</label>
+                        <input type="text" placeholder="Provincia">
+                        <label>Ciudad:</label>
+                        <input type="text" placeholder="Ciudad">
+                        <label>Contraseña:</label>
+                        <input type="password" placeholder="**********">
+                        <input type="submit" value="Crear Cuenta">
+                    </form>
+                </div>
+            </div>
+
+            <div class="par">
+                <div class="registro">
+                    <h3 id="Categorias">Gestión de las Categorias</h3>
+                    <form method="POST">
+                        <label>Nombre de la Categoría:</label>
+                        <input type="text" placeholder="Nombre">
+                        <label>Emoji de la Categoría:</label>
+                        <input type="text" maxlength="2" placeholder="💻">
+                        <label>Descripción Breve:</label>
+                        <input type="text" placeholder="Descripción">
+                        <input type="submit" vlaue="Crear Categoría">
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <strong>DevSwap</strong><br>
+            <hr>
+            <strong>Plataforma de intercambios entre desarrolladores</strong><br>
+            <hr>
+            <strong>2026 - DevSwap</strong>
+        </footer>
     </body>
 </html>
