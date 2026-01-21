@@ -374,6 +374,15 @@ form input[type="submit"]:active {
     color: #c33;
 }
 
+.registro .mensaje-exito {
+    background-color: #fee; 
+    border: 1px solid #fcc; 
+    padding: 15px; 
+    margin: 15px 0; 
+    border-radius: 5px; 
+    color: palegreen;
+}
+
 /* Responsive */
 /* Tablets (768px - 1024px) */
 @media (max-width: 1024px) {

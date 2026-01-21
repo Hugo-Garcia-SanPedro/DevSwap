@@ -111,13 +111,13 @@
         </header>
 
         <main>
-            <?php if($error): ?>
-                <div class="mensaje-error">
-                    <?php echo htmlspecialchars($error); ?>
-                </div>
-            <?php endif; ?>
-
             <div class="registro">
+                <?php if($error): ?>
+                    <div class="mensaje-error">
+                        <?php echo htmlspecialchars($error); ?>
+                    </div>
+                <?php endif; ?>
+                
                 <h2>Iniciar Sesión</h2>
 
                 <p>Introduce tus credenciales:</p>
