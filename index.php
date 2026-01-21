@@ -1,3 +1,42 @@
+<?php
+    // Iniciamos la sesion
+    session_start();
+
+    // Introducimos la configuracion de la base de datos
+    require_once 'configuracion.php';
+
+    $error = '';
+    $oferta_encontrada = false;
+
+    // Si la conexion es correcta se hace la consulta a la base de datos
+    if($conexion) {
+        $consulta = "
+            SELECT P2.NOMBRE_P AS NOMBRE_P, P1.NOMBRE_C AS NOMBRE_C, P2.UBICACION AS UBICACION, U.NICK_U AS NICK, P2.CAMBIO AS CAMBIO, P2.IMAGEN_P AS IMAGEN
+            FROM PUBLICACION2 P2
+            INNER JOIN PUBLICACION1 P1 ON P1.ID_P = P2.ID_P
+            INNER JOIN USUARIO U ON P1.CORREO_U = U.CORREO_U
+        ";
+
+        $resultado = mysqli_query($conexion, $consulta);
+        if($resultado && mysqli_num_rows($resultado) > 0) {
+            $datos_usuario = mysqli_fetch_assoc($resultado);
+            $oferta_encontrada = true;
+        }
+
+        if($oferta_encontrada) {
+            $_SESSION['nombre_p'] = $datos_usuario['NOMBRE_P'];
+            $_SESSION['nombre_c'] = $datos_usuario['NOMBRE_C'];
+            $_SESSION['ubicacion'] = $datos_usuario['UBICACION'];
+            $_SESSION['nick'] = $datos_usuario['NICK'];
+            $_SESSION['cambio'] = $datos_usuario['CAMBIO'];
+            $_SESSION['imagen'] = $datos_usuario['IMAGEN'];
+        }
+
+    } else {
+        $error = 'Conexion fallida con la base de datos.';
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -67,15 +106,33 @@
             <div>
                 <h3 id="Ofertas">Ofertas Destacadas</h3>
                 <div class="oferta">
-                    <img src="imagenes/Fotos/MacBook.jpg" alt="Portatil MacBook">
-                    <h4>Portatil Apple MacBook pro m4.</h4>
-                    <p>Categoria: Dispositivos Electrónicos.</p>
-                    <p>Ubicación: Madrid.</p>
-                    <p>Usuario: Jorge Gonzalez.</p>
-                    <p>Busca: IPad.</p>
+                    <img src="<?php echo $_SESSION['imagen'] ?>">
+                    <h4><?php echo $_SESSION['nombre_p'] ?></h4>
+                    <p>Categoria: <?php echo $_SESSION['nombre_c'] ?></p>
+                    <p>Ubicación: <?php echo $_SESSION['ubicacion'] ?></p>
+                    <p>Usuario: <?php echo $_SESSION['nick'] ?></p>
+                    <p>Busca: <?php echo $_SESSION['cambio'] ?></p>
                 </div>
 
-                <div class="Oferta">
+                <div class="oferta">
+                    <img src="<?php echo $_SESSION['imagen'] ?>">
+                    <h4><?php echo $_SESSION['nombre_p'] ?></h4>
+                    <p>Categoria: <?php echo $_SESSION['nombre_c'] ?></p>
+                    <p>Ubicación: <?php echo $_SESSION['ubicacion'] ?></p>
+                    <p>Usuario: <?php echo $_SESSION['nick'] ?></p>
+                    <p>Busca: <?php echo $_SESSION['cambio'] ?></p>
+                </div>
+
+                <div class="oferta">
+                    <img src="<?php echo $_SESSION['imagen'] ?>">
+                    <h4><?php echo $_SESSION['nombre_p'] ?></h4>
+                    <p>Categoria: <?php echo $_SESSION['nombre_c'] ?></p>
+                    <p>Ubicación: <?php echo $_SESSION['ubicacion'] ?></p>
+                    <p>Usuario: <?php echo $_SESSION['nick'] ?></p>
+                    <p>Busca: <?php echo $_SESSION['cambio'] ?></p>
+                </div>
+
+                <!-- <div class="Oferta">
                     <img src="imagenes/Fotos/libro.jpg" alt="Libro de Programación">
                     <h4>El Programador Pragmatico.</h4>
                     <p>Categoria: Libros.</p>
@@ -91,7 +148,7 @@
                     <p>Ubicación: Barcelona.</p>
                     <p>Usuario: Mario Luque.</p>
                     <p>Busca: Apple Pencil.</p>
-                </div>
+                </div> -->
             </div>
 
             <div>
