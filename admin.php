@@ -12,11 +12,11 @@
         <header>
             <div class="barra-busqueda">
                 <h1>DevSwap</h1>
-                <a href="index.html">Inicio</a>
+                <a href="index.php">Inicio</a>
                 <a href="#Usuarios">Gestión de Usuarios</a>
                 <a href="#Moderacion">Moderación de Ofertas</a>
                 <a href="#Categorias">Gestión de Categorias</a>
-                <a href="index.html">Cerrar Sesión</a>
+                <a href="index.php">Cerrar Sesión</a>
             </div>
 
             <div class="banner-principal">

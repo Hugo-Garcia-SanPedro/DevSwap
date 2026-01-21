@@ -13,11 +13,11 @@
         <header>
             <div class="barra-busqueda">
                 <h1>DevSwap</h1>
-                <a href="index.html">Inicio</a>
-                <a href="publicar.html">Publicar</a>
-                <a href="buscar.html">Buscar</a>
-                <a href="intercambios.html">Mis Intercambios</a>
-                <a href="index.html">Cerrar Sesión</a>
+                <a href="index.php">Inicio</a>
+                <a href="publicar.php">Publicar</a>
+                <a href="buscar.php">Buscar</a>
+                <a href="intercambios.php">Mis Intercambios</a>
+                <a href="index.php">Cerrar Sesión</a>
             </div>
 
             <div class="banner-principal">
@@ -32,17 +32,17 @@
                 <div class="tarjeta">
                     <h3>Buscar Objetos</h3>
                     <p>Encuentra los objetos disponibles para intercambiar.</p>
-                    <a href="buscar.html">Buscar</a>
+                    <a href="buscar.php">Buscar</a>
                 </div>
                 <div class="tarjeta">
                     <h3>Crear Publicaciones</h3>
                     <p>Crea tus publicaciones y empieza a intercambiar objetos.</p>
-                    <a href="publicar.html">Publicar</a>
+                    <a href="publicar.php">Publicar</a>
                 </div>
                 <div class="tarjeta">
                     <h3>Mis Intercambios</h3>
                     <p>Visualiza tus intercambios que estan en activo.</p>
-                    <a href="intercambios.html">Mis Intercambios</a>
+                    <a href="intercambios.php">Mis Intercambios</a>
                 </div>
             </div>
 

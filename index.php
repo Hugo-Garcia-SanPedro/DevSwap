@@ -22,7 +22,7 @@
             <div class="banner-principal">
                 <h2>Intercambia lo que no utilices.</h2>
                 <p>Unete a la comunidad de intercambios entre desarrolladores, mas grande</p>
-                <a href="registro.html">Registrate Gratis.</a>
+                <a href="registro.php">Registrate Gratis.</a>
                 <a href="#Ofertas">Ver Ofertas</a>
             </div>
         </header>
@@ -97,7 +97,7 @@
             <div>
                 <h2>¿Listo para empezar?</h2>
                 <p>Unete a miles de desarrolladores.</p>
-                <a href="registro.html">Registrate Gratis</a>
+                <a href="registro.php">Registrate Gratis</a>
             </div>
         </main>
 

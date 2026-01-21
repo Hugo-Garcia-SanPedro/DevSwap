@@ -66,11 +66,11 @@
                     // Se redirige segun el tipo de usuario que sea
                     switch($datos_usuario['TIPO']) {
                         case 'USUARIO':
-                            header('Location: usuario-normal.html');
+                            header('Location: usuario-normal.php');
                             exit();
                         
                         case 'ADMINISTRADOR':
-                            header('Location: admin.html');
+                            header('Location: admin.php');
                             exit();
                     }
 
@@ -103,21 +103,21 @@
         <header>
             <div class="barra-busqueda">
                 <h1>DevSwap</h1>
-                <a href="index.html">Inicio</a>
-                <a href="index.html#Como-Funciona">Como Funciona</a>
-                <a href="index.html#Ofertas">Ofertas</a>
-                <a href="registro.html">Registrarse</a>
+                <a href="index.php">Inicio</a>
+                <a href="index.php#Como-Funciona">Como Funciona</a>
+                <a href="index.php#Ofertas">Ofertas</a>
+                <a href="registro.php">Registrarse</a>
             </div>
         </header>
 
         <main>
+            <?php if($error): ?>
+                <div class="mensaje-error">
+                    <?php echo htmlspecialchars($error); ?>
+                </div>
+            <?php endif; ?>
+
             <div class="registro">
-                <?php if($error): ?>
-                    <div class="mensaje-error">
-                        <?php echo htmlspecialchars($error); ?>
-                    </div>
-                <?php endif; ?>
-                
                 <h2>Iniciar Sesión</h2>
 
                 <p>Introduce tus credenciales:</p>
@@ -130,7 +130,7 @@
                 </form>
 
                 <p>¿No tienes cuenta?</p>
-                <a href="registro.html">Registrate Aqui</a>
+                <a href="registro.php">Registrate Aqui</a>
             </div>
         </main>
 

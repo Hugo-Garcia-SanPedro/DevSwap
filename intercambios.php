@@ -13,9 +13,9 @@
         <header>
             <div class="barra-busqueda">
                 <h1>DevSwap</h1>
-                <a href="index.html">Inicio</a>
-                <a href="usuario-normal.html">Mi Perfil</a>
-                <a href="index.html">Cerrar Sesión</a>
+                <a href="index.php">Inicio</a>
+                <a href="usuario-normal.php">Mi Perfil</a>
+                <a href="index.php">Cerrar Sesión</a>
             </div>
         </header>
 

@@ -24,10 +24,10 @@
         <header>
             <div class="barra-busqueda">
                 <h1>DevSwap</h1>
-                <a href="index.html">Inicio</a>
-                <a href="index.html#Como-Funciona">Como Funciona</a>
-                <a href="index.html#Ofertas">Ofertas</a>
-                <a href="login.html">Iniciar Sesión</a>
+                <a href="index.php">Inicio</a>
+                <a href="index.php#Como-Funciona">Como Funciona</a>
+                <a href="index.php#Ofertas">Ofertas</a>
+                <a href="login.php">Iniciar Sesión</a>
             </div>
         </header>
 
@@ -57,7 +57,7 @@
                 </form>
 
                 <p>¿Ya tienes una cuenta?</p>
-                <a href="login.html">Iniciar Sesión</a>
+                <a href="login.php">Iniciar Sesión</a>
             </div>
         </main>
 
