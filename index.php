@@ -16,7 +16,7 @@
                 <a href="#top">Inicio</a>
                 <a href="#Como-Funciona">Cómo Funciona</a>
                 <a href="#Ofertas">Ofertas</a>
-                <a href="login.html">Iniciar Sesión</a>
+                <a href="login.php">Iniciar Sesión</a>
             </div>
 
             <div class="banner-principal">

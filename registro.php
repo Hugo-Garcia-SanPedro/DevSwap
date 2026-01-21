@@ -1,3 +1,14 @@
+<?php
+    // Empezamos la sesion
+    session_start();
+
+    // Implementamos el archivo de configuracion de la bas de datos
+    require_once 'configuracion.php';
+
+    $error = '';
+    $exito = '';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
