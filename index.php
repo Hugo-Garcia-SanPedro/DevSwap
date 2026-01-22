@@ -6,7 +6,7 @@
     require_once 'configuracion.php';
 
     $error = '';
-    $oferta_encontrada = false;
+    $ofertas = [];
 
     // Si la conexion es correcta se hace la consulta a la base de datos
     if($conexion) {
@@ -15,21 +15,15 @@
             FROM PUBLICACION2 P2
             INNER JOIN PUBLICACION1 P1 ON P1.ID_P = P2.ID_P
             INNER JOIN USUARIO U ON P1.CORREO_U = U.CORREO_U
+            ORDER BY RAND()
+            LIMIT 3
         ";
 
         $resultado = mysqli_query($conexion, $consulta);
         if($resultado && mysqli_num_rows($resultado) > 0) {
-            $datos_usuario = mysqli_fetch_assoc($resultado);
-            $oferta_encontrada = true;
-        }
-
-        if($oferta_encontrada) {
-            $_SESSION['nombre_p'] = $datos_usuario['NOMBRE_P'];
-            $_SESSION['nombre_c'] = $datos_usuario['NOMBRE_C'];
-            $_SESSION['ubicacion'] = $datos_usuario['UBICACION'];
-            $_SESSION['nick'] = $datos_usuario['NICK'];
-            $_SESSION['cambio'] = $datos_usuario['CAMBIO'];
-            $_SESSION['imagen'] = $datos_usuario['IMAGEN'];
+            while($fila = mysqli_fetch_assoc($resultado)) {
+                $ofertas[] = $fila;
+            }
         }
 
     } else {
@@ -105,50 +99,23 @@
 
             <div>
                 <h3 id="Ofertas">Ofertas Destacadas</h3>
-                <div class="oferta">
-                    <img src="<?php echo $_SESSION['imagen'] ?>">
-                    <h4><?php echo $_SESSION['nombre_p'] ?></h4>
-                    <p>Categoria: <?php echo $_SESSION['nombre_c'] ?></p>
-                    <p>Ubicación: <?php echo $_SESSION['ubicacion'] ?></p>
-                    <p>Usuario: <?php echo $_SESSION['nick'] ?></p>
-                    <p>Busca: <?php echo $_SESSION['cambio'] ?></p>
-                </div>
+                <!-- Comprobamos que haya ofertas para mostrar -->
+                <?php if(count($ofertas) > 0): ?>
+                    <!-- Hacemos un bucle para mostrar las ofertas -->
+                    <?php foreach($ofertas as $oferta): ?>
+                        <div class="oferta">
+                            <img src="<?php echo htmlspecialchars($oferta['IMAGEN']); ?>" alt="<?php echo htmlspecialchars($oferta['NOMBRE_P']); ?>">
+                            <h4><?php echo htmlspecialchars($oferta['NOMBRE_P']); ?></h4>
+                            <p>Categoria: <?php echo htmlspecialchars($oferta['NOMBRE_C']); ?></p>
+                            <p>Ubicación: <?php echo htmlspecialchars($oferta['UBICACION']); ?></p>
+                            <p>Usuario: <?php echo htmlspecialchars($oferta['NICK']); ?></p>
+                            <p>Busca: <?php echo htmlspecialchars($oferta['CAMBIO']); ?></p>
+                        </div>
+                    <?php endforeach; ?>
 
-                <div class="oferta">
-                    <img src="<?php echo $_SESSION['imagen'] ?>">
-                    <h4><?php echo $_SESSION['nombre_p'] ?></h4>
-                    <p>Categoria: <?php echo $_SESSION['nombre_c'] ?></p>
-                    <p>Ubicación: <?php echo $_SESSION['ubicacion'] ?></p>
-                    <p>Usuario: <?php echo $_SESSION['nick'] ?></p>
-                    <p>Busca: <?php echo $_SESSION['cambio'] ?></p>
-                </div>
-
-                <div class="oferta">
-                    <img src="<?php echo $_SESSION['imagen'] ?>">
-                    <h4><?php echo $_SESSION['nombre_p'] ?></h4>
-                    <p>Categoria: <?php echo $_SESSION['nombre_c'] ?></p>
-                    <p>Ubicación: <?php echo $_SESSION['ubicacion'] ?></p>
-                    <p>Usuario: <?php echo $_SESSION['nick'] ?></p>
-                    <p>Busca: <?php echo $_SESSION['cambio'] ?></p>
-                </div>
-
-                <!-- <div class="Oferta">
-                    <img src="imagenes/Fotos/libro.jpg" alt="Libro de Programación">
-                    <h4>El Programador Pragmatico.</h4>
-                    <p>Categoria: Libros.</p>
-                    <p>Ubicación: Salamanca.</p>
-                    <p>Usuario: Laura Perez.</p>
-                    <p>Busca: Ratón inalambrico.</p>
-                </div>
-
-                <div class="Oferta">
-                    <img src="imagenes/Fotos/tecladoRGB.jpg" alt="Teclado con Luces RGB">
-                    <h4>Teclado con Luces RGB.</h4>
-                    <p>Categorias: Accesorios.</p>
-                    <p>Ubicación: Barcelona.</p>
-                    <p>Usuario: Mario Luque.</p>
-                    <p>Busca: Apple Pencil.</p>
-                </div> -->
+                <?php else: ?>
+                    <p>No hay ofertas disponibles en este momento.</p>
+                <?php endif; ?>
             </div>
 
             <div>
