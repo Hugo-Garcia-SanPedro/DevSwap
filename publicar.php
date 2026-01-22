@@ -16,7 +16,7 @@
                 <a href="index.php">Inicio</a>
                 <a href="usuario-normal.php">Mi Perfil</a>
                 <a href="intercambios.php">Mis Intercambios</a>
-                <a href="index.php">Cerrar Sesión</a>
+                <a href="logout.php">Cerrar Sesión</a>
             </div>
         </header>
         

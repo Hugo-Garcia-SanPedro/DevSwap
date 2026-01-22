@@ -1,3 +1,40 @@
+<?php
+    // Comenzamos la sesion
+    session_start();
+
+    // Fichero para la configuracion de la base de datos
+    require_once 'configuracion.php';
+
+    // Verificamos que el usuario se hay logueado
+    if(!isset($_SESSION['correo']) || $_SESSION['tipo'] !== 'USUARIO') {
+        header("Location: login.php");
+    }
+
+    $consulta = "
+        SELECT COUNT(*) as TOTAL_ACEPTADOS
+        FROM SOLICITA S
+        WHERE S.CORREO_U = '{$_SESSION['correo']}' AND S.ESTADO = 'ACEPTADO'
+    ";
+
+    $resultado = mysqli_query($conexion, $consulta);
+    if($resultado && mysqli_num_rows($resultado) > 0) {
+        $resultado = mysqli_fetch_assoc($resultado);
+        $total_aceptados = $resultado['TOTAL_ACEPTADOS'];
+    }
+
+    $consulta_pendientes = "
+        SELECT COUNT(*) as TOTAL_PENDIENTES
+        FROM SOLICITA S
+        WHERE S.CORREO_U = '{$_SESSION['correo']}' AND S.ESTADO = 'PENDIENTE'
+    ";
+
+    $resultado_pendientes = mysqli_query($conexion, $consulta_pendientes);
+    if($resultado_pendientes && mysqli_num_rows($resultado_pendientes) > 0) {
+        $resultado_pendientes = mysqli_fetch_assoc($resultado_pendientes);
+        $total_pendientes = $resultado_pendientes['TOTAL_PENDIENTES'];
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -17,12 +54,13 @@
                 <a href="publicar.php">Publicar</a>
                 <a href="buscar.php">Buscar</a>
                 <a href="intercambios.php">Mis Intercambios</a>
-                <a href="index.php">Cerrar Sesión</a>
+                <a href="logout.php">Cerrar Sesión</a>
             </div>
 
             <div class="banner-principal">
                 <h2>Panel de Usuario</h2>
-                <h2>👋Hola, Mario</h2>
+                <!-- Mostramos el nick del usuario que se ha logueado en la sesion -->
+                <h2>👋Hola, <?php echo htmlspecialchars($_SESSION['nick']); ?></h2>
                 <p>Busca y crea publicaciones!!!!!!</p>
             </div>
         </header>
@@ -50,11 +88,11 @@
                 <h3>Mi Resumen de Actividad</h3>
                 <div class="tarjeta">
                     <h3>Intercambios Realizados:</h3>
-                    <h4>12</h4>
+                    <h4><?php echo htmlspecialchars($total_aceptados); ?></h4>
                 </div>
                 <div class="tarjeta">
                     <h3>Solicitudes Pendientes:</h3>
-                    <h4>4</h4>
+                    <h4><?php echo htmlspecialchars($total_pendientes); ?></h4>
                 </div>
             </div>
         </main>

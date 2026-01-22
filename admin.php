@@ -16,7 +16,7 @@
                 <a href="#Usuarios">Gestión de Usuarios</a>
                 <a href="#Moderacion">Moderación de Ofertas</a>
                 <a href="#Categorias">Gestión de Categorias</a>
-                <a href="index.php">Cerrar Sesión</a>
+                <a href="logout.php">Cerrar Sesión</a>
             </div>
 
             <div class="banner-principal">
