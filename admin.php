@@ -15,35 +15,100 @@
 
     // Comprobamos que se haya enviado un POST, para crear usuario
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $correo_u = $_POST['Correo'] ?? '';
-        $nick_u = $_POST['Nick'] ?? '';
-        $apellido1 = $_POST['Apellido1'] ?? '';
-        $apellido2 = $_POST['Apellido2'] ?? '';
-        $nombre_u = $_POST['Nombre'] ?? '';
-        $telefono = $_POST['Telefono'] ?? '';
-        $ciudad = $_POST['Ciudad'] ?? '';
-        $contrasenia_u = $_POST['Contrasenia'] ?? '';
+        if(isset($_POST['gestion-usuarios'])) {
+            $correo_u = $_POST['Correo'] ?? '';
+            $nick_u = $_POST['Nick'] ?? '';
+            $apellido1 = $_POST['Apellido1'] ?? '';
+            $apellido2 = $_POST['Apellido2'] ?? '';
+            $nombre_u = $_POST['Nombre'] ?? '';
+            $telefono = $_POST['Telefono'] ?? '';
+            $ciudad = $_POST['Ciudad'] ?? '';
+            $contrasenia_u = $_POST['Contrasenia'] ?? '';
 
-        // Comprobamos que todos los campos se hayan completado
-        if(empty($correo_u) || empty($nick_u) || empty($apellido1) || empty($apellido2) || empty($nombre_u) || empty($telefono) || empty($ciudad) ||empty($contrasenia_u)) {
-            $error = 'Se ha dejado algun campo sin completar';
-
-        } else {
-            // Creamos la consulta con los campos del post
-            $consulta_crear_usuario = "
-                INSERT INTO USUARIO(CORREO_U, NICK_U, APELLIDO1, APELLIDO2, NOMBRE_U, TELEFONO, CIUDAD, CONTRASEÑA_U)
-                VALUES
-                ('$correo_u', '$nick_u', '$apellido1', '$apellido2', '$nombre_u', '$telefono', '$ciudad', '$contrasenia_u')
-            ";
-
-            $resultado_crear_usuario = mysqli_query($conexion, $consulta_crear_usuario);
-
-            if($resultado_crear_usuario) {
-                $exito = 'El usuario se creo satisfactoriamente.';
+            // Comprobamos que todos los campos se hayan completado
+            if(empty($correo_u) || empty($nick_u) || empty($apellido1) || empty($apellido2) || empty($nombre_u) || empty($telefono) || empty($ciudad) ||empty($contrasenia_u)) {
+                $error = 'Se ha dejado algun campo sin completar';
 
             } else {
-                $error = 'Error al crear el usuario: ' . mysqli_error($conexion);
+                // Creamos la consulta con los campos del post
+                $consulta_crear_usuario = "
+                    INSERT INTO USUARIO(CORREO_U, NICK_U, APELLIDO1, APELLIDO2, NOMBRE_U, TELEFONO, CIUDAD, CONTRASEÑA_U)
+                    VALUES
+                    ('$correo_u', '$nick_u', '$apellido1', '$apellido2', '$nombre_u', '$telefono', '$ciudad', '$contrasenia_u')
+                ";
+
+                $resultado_crear_usuario = mysqli_query($conexion, $consulta_crear_usuario);
+
+                if($resultado_crear_usuario) {
+                    $exito = 'El usuario se creo satisfactoriamente.';
+
+                } else {
+                    $error = 'Error al crear el usuario: ' . mysqli_error($conexion);
+                }
             }
+        }
+    }
+
+    // Comprobamos que se haya usado el metodo POST, en el segundo formulario
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(isset($_POST['gestion-categorias'])) {
+            $nombre_c = $_POST['nombre_c'] ?? '';
+            $emoji = $_POST['emoji'] ?? '';
+            $descripcion = $_POST['descripcion'] ?? '';
+
+            // Comprobamos que los campos esten completos
+            if(empty($nombre_c) || empty($emoji) || empty($descripcion)) {
+                $error = 'Error al completar los campos.';
+
+            } else {
+                // Creamos la consulta SQL, para insertar los valores
+                $consulta_crear_categoria = "
+                    INSERT INTO CATEGORIA(NOMBRE_C, DESCRIPCION_C, IMAGEN_C)
+                    VALUES
+                    ('$nombre_c', '$descripcion', '$emoji')
+                ";
+
+                // Obtenemos el resultado de la consulta
+                $resultado_crear_categoria = mysqli_query($conexion, $consulta_crear_categoria);
+                if($resultado_crear_categoria) {
+                    $exito = 'La categoria se creo satisfactoriamente.';
+
+                } else {
+                    $error = 'Error al crear la categoria. ' . mysqli_error($conexion);
+                }
+            }
+        }
+    }
+
+    // Presentar usuarios
+    $usuarios = [];
+    $obtener_usuarios = "
+        SELECT U.CORREO_U, U.NICK_U, U.NOMBRE_U
+        FROM USUARIO U
+        ORDER BY RAND()
+        LIMIT 3
+    ";
+
+    $resultado_obtener_usuarios = mysqli_query($conexion, $obtener_usuarios);
+    if($resultado_obtener_usuarios && mysqli_num_rows($resultado_obtener_usuarios) > 0) {
+        while($fila = mysqli_fetch_assoc($resultado_obtener_usuarios)) {
+            $usuarios[] = $fila;
+        }
+    }
+
+    // Presentar categorias
+    $categorias = [];
+    $obtener_categorias = "
+        SELECT C.NOMBRE_C, C.DESCRIPCION_C, C.IMAGEN_C
+        FROM CATEGORIA C
+        ORDER BY RAND()
+        LIMIT 3
+    ";
+
+    $resultado_obtener_categorias = mysqli_query($conexion, $obtener_categorias);
+    if($resultado_obtener_categorias && mysqli_num_rows($resultado_obtener_categorias) > 0) {
+        while($fila_c = mysqli_fetch_assoc($resultado_obtener_categorias)) {
+            $categorias[] = $fila_c;
         }
     }
 ?>
@@ -89,6 +154,7 @@
                 <div class="registro">
                     <h3 id="Usuarios">Gestión de Usuarios</h3>
                     <form method="POST" action="admin.php">
+                        <input type="hidden" name="gestion-usuarios">
                         <label for="Nombre">Nombre:</label>
                         <input type="text" id="Nombre" name="Nombre" placeholder="Nombre de Usuario">
                         <label for="Nick">Nick:</label>
@@ -113,24 +179,16 @@
             <!-- Usuarios que hay -->
             <div class="par">
                 <h3>Gestión de Usuarios:</h3>
-                <div class="tarjeta">
-                    <h3>Laura@gmail.com - Laura Gonzalez</h3>
-                    <p>Numero de Publicaciones: 5</p>
-                    <p>⭐Valoración: 4.5</p>
-                    <a href="#Top">Eliminar</a>
-                </div>        
-                <div class="tarjeta">
-                    <h3>Pedro@hotmail.com - Pedro Perez</h3>
-                    <p>Numero de Publicaciones: 4</p>
-                    <p>⭐Valoración: 2.4</p>
-                    <a href="#Top">Eliminar</a>
-                </div>
-                <div class="tarjeta">
-                    <h3>Sara Garcia - Saragar@gmail.com</h3>
-                    <p>Numero de Publicaciones: 12</p>
-                    <p>⭐Valoración: 5</p>
-                    <a href="#Top">Eliminar</a>
-                </div>
+
+                <!-- Bucle para mostrar los usuarios -->
+                <?php foreach($usuarios as $usuario): ?>
+                    <div class="tarjeta">
+                        <h3><?php echo htmlspecialchars($usuario['CORREO_U']); ?></h3>
+                        <h3>Nombre: <?php echo htmlspecialchars($usuario['NOMBRE_U']); ?></h3>
+                        <p>Nick: <?php echo htmlspecialchars($usuario['NICK_U']); ?></p>
+                        <a href="#Top">Eliminar</a>
+                    </div>  
+                <?php endforeach; ?>
                 <a href="#Top">Ver Mas Usuarios</a>
             </div>
 
@@ -139,6 +197,7 @@
                 <div class="registro">
                     <h3 id="Categorias">Gestión de las Categorias</h3>
                     <form method="POST" action="admin.php">
+                        <input type="hidden" name="gestion-categorias">
                         <label for="nombre_c">Nombre de la Categoría:</label>
                         <input type="text" id="nombre_c" name="nombre_c" placeholder="Nombre">
                         <label for="emoji">Emoji de la Categoría:</label>
@@ -153,6 +212,17 @@
             <!-- Categorias creadas -->
             <div class="par">
                 <h3>Gestión de Categorias</h3>
+
+                <!-- Bucle para crear las categorias -->
+                <?php foreach($categorias as $categoria): ?>
+                    <div class="Oferta">
+                        <img src="<?php echo htmlspecialchars($categoria['IMAGEN_C']); ?>" alt="Emoji categorias.">
+                        <h4>Categoria: <?php echo htmlspecialchars($categoria['NOMBRE_C']); ?></h4>
+                        <p>Descripción: <?php echo htmlspecialchars($categoria['DESCRIPCION_C']); ?></p>
+                        <a>Eliminar Categoria</a>
+                    </div>
+                <?php endforeach; ?>
+                
                 <div class="Oferta">
                     <img src="imagenes/Emoji/emoji_videojuego.png" alt="Emoji de un mando de videojuegos.">
                     <h4>Categoria de Videojuegos.</h4>
