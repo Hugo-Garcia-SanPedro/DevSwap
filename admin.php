@@ -302,7 +302,6 @@
                         <a href="#" onclick="eliminarUsuario('<?php echo htmlspecialchars($usuario['CORREO_U']); ?>'); return false;">Eliminar Usuario</a>
                     </div>  
                 <?php endforeach; ?>
-                <a href="#Top">Ver Mas Usuarios</a>
             </div>
 
             <!-- Zona para crear categorias -->
